@@ -10,13 +10,13 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping()
+    @GetMapping("/")
     public String printUsersList(ModelMap model) {
         model.addAttribute("usersList", userService.getUsersList());
         return "pages/index";
