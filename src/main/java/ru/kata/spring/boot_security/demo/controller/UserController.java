@@ -16,10 +16,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String printUsersList(ModelMap model) {
         model.addAttribute("usersList", userService.getUsersList());
-        return "pages/index";
+        return "pages/players_for_admin";
     }
 
     @GetMapping("{id}")
