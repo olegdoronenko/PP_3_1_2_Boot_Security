@@ -29,7 +29,7 @@
             <td th:text="${user.getPlayerLevel()}"/>
 
             <td>
-                <a th:href="@{/{id}(id=${user.getId()})}">
+                <a th:href="@{admin/{id}(id=${user.getId()})}">
                     <input type="button" value="Modify">
                 </a>
             </td>
@@ -40,7 +40,7 @@
 </div>
 
 <div th:align="center">
-    <a th:href="new">
+    <a th:href="@{admin/new}">
         <input type="button" value="Add new player to your party">
     </a>
 </div>
