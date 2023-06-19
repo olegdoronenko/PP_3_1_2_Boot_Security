@@ -27,17 +27,22 @@ public class User implements UserDetails {
     private Collection<Role> roles;
 
 
-
-
-    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-
+    public User() {
+        
     }
+
+//    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+//
+//    }
 
     public User(String nickName, String playerClass, int playerLevel) {
         this.nickName = nickName;
         this.playerClass = playerClass;
         this.playerLevel = playerLevel;
 
+    }
+
+    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
     }
 
     public long getId() {

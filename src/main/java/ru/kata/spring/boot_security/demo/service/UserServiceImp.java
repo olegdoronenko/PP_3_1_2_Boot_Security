@@ -58,10 +58,10 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findUserByUsername(username);
+    public UserDetails loadUserByUsername(String nickName) throws UsernameNotFoundException {
+        User user = findUserByUsername(nickName);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+            throw new UsernameNotFoundException(String.format("User '%s' not found", nickName));
         }
 
         return new User(user.getUsername(), user.getPassword(), user.getAuthorities());
