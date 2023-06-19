@@ -17,6 +17,9 @@
             <th scope="col">Nickname</th>
             <th scope="col">Player Class</th>
             <th scope="col">Player Level</th>
+            <th scope="col">Player Password</th>
+            <th scope="col">Player ROLES</th>
+
             <th scope="col">Modify player</th>
 
         </tr>
@@ -27,6 +30,10 @@
             <td th:text="${user.getNickName()}"/>
             <td th:text="${user.getPlayerClass()}"/>
             <td th:text="${user.getPlayerLevel()}"/>
+            <td th:text="${user.getPassword()}"/>
+            <td th:text="${user.getRoles()}"/>
+
+
 
             <td>
                 <a th:href="@{admin/{id}(id=${user.getId()})}">

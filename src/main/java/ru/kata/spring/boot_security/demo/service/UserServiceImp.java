@@ -1,6 +1,8 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -46,7 +48,22 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    public User findUserByUsername(String nickName) {
+        return userDao.findUserByUsername(nickName);
+    }
+
+    @Override
     public List<User> getUsersList() {
         return userDao.getUsersList();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = findUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+        }
+
+        return new User(user.getUsername(), user.getPassword(), user.getAuthorities());
     }
 }

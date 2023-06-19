@@ -43,6 +43,11 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
+    public User findUserByUsername(String nickName) {
+        return entityManager.find(User.class, nickName);
+    }
+
+    @Override
     public List<User> getUsersList() {
         return entityManager.createQuery("FROM User", User.class).getResultList();
     }
