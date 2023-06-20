@@ -4,7 +4,9 @@ import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -26,7 +28,7 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public void deleteUser(long id) {
+    public void deleteUser(Long id) {
         User user = findUserById(id);
         deleteUser(user);
     }
@@ -38,13 +40,20 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public User findUserById(long id) {
+    public User findUserById(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
-    public User findUserByUsername(String nickName) {
-        return entityManager.find(User.class, nickName);
+    public User findUserByUsername(String username) {
+        TypedQuery<User> query = entityManager.createQuery(
+                "SELECT u FROM User u WHERE u.nickName = :username", User.class);
+        query.setParameter("username", username);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 
     @Override

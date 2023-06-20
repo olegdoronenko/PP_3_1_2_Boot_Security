@@ -12,7 +12,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public AdminController(UserService userService) {
@@ -26,7 +26,7 @@ public class AdminController {
     }
 
     @GetMapping("{id}")
-    public String printOneUser(@PathVariable("id") long id, ModelMap model) {
+    public String printOneUser(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("user", userService.findUserById(id));
         return "/show";
     }
@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @GetMapping("{id}/edit")
-    public String printEditForm(@PathVariable("id") long id, ModelMap model) {
+    public String printEditForm(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("user", userService.findUserById(id));
         return "/edit";
     }
@@ -57,10 +57,9 @@ public class AdminController {
     }
 
     @DeleteMapping("{id}")
-    public String deleteUser(@PathVariable("id") long id) {
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
-
 
 }

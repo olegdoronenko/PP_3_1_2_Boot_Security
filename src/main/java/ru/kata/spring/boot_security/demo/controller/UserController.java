@@ -13,7 +13,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public String printOneUser(@PathVariable("id") long id, ModelMap model) {
+    public String printOneUser(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute(userService.findUserById(id));
         return "/show-common";
     }

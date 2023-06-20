@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class UserServiceImp implements UserService{
 
-    private UserDao userDao;
+    private final UserDao userDao;
 
     @Autowired
     public UserServiceImp(UserDao userDao) {
@@ -33,7 +33,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public void deleteUser(long id) {
+    public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
 
@@ -43,7 +43,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User findUserById(long id) {
+    public User findUserById(Long id) {
         return userDao.findUserById(id);
     }
 
@@ -57,13 +57,18 @@ public class UserServiceImp implements UserService{
         return userDao.getUsersList();
     }
 
+    @Transactional
     @Override
     public UserDetails loadUserByUsername(String nickName) throws UsernameNotFoundException {
+
         User user = findUserByUsername(nickName);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", nickName));
         }
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getAuthorities());
+        return user;
 
-        return new User(user.getUsername(), user.getPassword(), user.getAuthorities());
     }
 }

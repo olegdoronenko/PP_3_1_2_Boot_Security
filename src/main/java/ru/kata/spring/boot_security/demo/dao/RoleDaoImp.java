@@ -28,7 +28,7 @@ public class RoleDaoImp implements RoleDao{
     }
 
     @Override
-    public void deleteRole(long id) {
+    public void deleteRole(Long id) {
         Role role = findRoleById(id);
         deleteRole(role);
     }
@@ -40,7 +40,7 @@ public class RoleDaoImp implements RoleDao{
     }
 
     @Override
-    public Role findRoleById(long id) {
+    public Role findRoleById(Long id) {
         return entityManager.find(Role.class, id);
     }
 

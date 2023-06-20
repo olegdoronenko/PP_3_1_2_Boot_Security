@@ -13,7 +13,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String nickName;
     private String playerClass;
     private int playerLevel;
@@ -31,9 +31,6 @@ public class User implements UserDetails {
         
     }
 
-//    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-//
-//    }
 
     public User(String nickName, String playerClass, int playerLevel) {
         this.nickName = nickName;
@@ -42,10 +39,8 @@ public class User implements UserDetails {
 
     }
 
-    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-    }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -95,7 +90,7 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
