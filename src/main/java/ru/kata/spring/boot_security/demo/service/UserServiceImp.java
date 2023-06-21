@@ -65,6 +65,7 @@ public class UserServiceImp implements UserService{
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", nickName));
         }
+
         return user;
 
     }
